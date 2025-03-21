@@ -1,0 +1,9 @@
+./strapi/node_modules
+./strapi/.env
+./strapi/.DS_Store
+./strapi/.AppleDouble
+./strapi/.LSOverride
+./strapi/Icon
+./strapi/.Spotlight-V100
+./strapi/.Trashes
+./strapi/._*
