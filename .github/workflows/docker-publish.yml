@@ -16,11 +16,6 @@ jobs:
           submodules: recursive
           fetch-depth: 0
 
-      - name: Actualizar submódulos
-        run: |
-          git submodule update --init --recursive
-          git submodule foreach git checkout main
-
       - name: Configurar Docker para GitHub Actions
         uses: docker/setup-buildx-action@v1
 
