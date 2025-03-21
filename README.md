@@ -59,6 +59,52 @@ STRIPE_PUBLIC_API_KEY=tu_clave_publica
 Importante: Por motivos de seguridad, no incluyas el archivo .env en el repositorio público. Usa un archivo .dockerignore para excluirlo de la imagen Docker.
 
 ## Desarrollo Local
+
+### Aliases de Git para Submódulos
+Para facilitar la gestión del repositorio principal y sus submódulos (por ejemplo, el backend y el frontend), se han configurado varios alias en Git. Estos alias te permiten ejecutar comandos de forma recursiva en el superproyecto y en todos sus submódulos, simplificando tareas comunes como push, status y cambios de rama.
+
+#### pushrec
+Realiza un push recursivo de los cambios del repositorio principal y de los submódulos de forma on-demand.
+
+Uso:
+```bash
+git pushrec
+```
+#### statusrec
+Muestra el estado del repositorio principal y, a continuación, recorre de forma recursiva cada submódulo mostrando su estado.
+
+Uso:
+
+```bash
+git statusrec
+```
+
+#### checkoutbrec [branch]
+Crea una nueva rama (checkout -b) en el repositorio principal y en todos los submódulos de forma recursiva.
+
+Uso:
+
+```bash
+git checkoutbrec feature-x
+```
+
+#### checkoutrec [branch]
+Cambia a la rama especificada en el repositorio principal y en todos los submódulos de forma recursiva.
+
+Uso:
+
+```bash
+git checkoutrec develop
+```
+
+### reccommit [mensaje]
+Realiza un commit recursivo: recorre todos los submódulos, añade los cambios y hace commit con el mensaje especificado; luego, actualiza el puntero del submódulo en el repositorio principal y realiza un commit.
+Uso:
+```bash
+git reccommit "Actualización de submódulos"
+```
+
+
 ### Frontend (Angular)
 Navega a la carpeta frontend y ejecuta el script de configuración:
 ```bash

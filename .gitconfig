@@ -1,0 +1,51 @@
+[alias]
+    # Commit en el superproyecto y en todos los submódulos
+    reccommit = "!f() { \
+      msg=\"$1\"; \
+      echo \"Committing in submodules:\"; \
+      git submodule foreach 'git add -A && git commit -m \"$msg\" || echo \"No changes in $name\"'; \
+      echo \"Updating submodule pointers in superproject...\"; \
+      git add .; \
+      git commit -m \"$msg\"; \
+    }; f"
+
+    # Empuja los cambios en el superproyecto y en todos los submódulos
+    pushrec = "!git push --recurse-submodules=on-demand"
+
+    # Muestra el estado del repositorio principal y de todos los submódulos
+    statusrec = "!f() { \
+      echo 'Estado del repositorio principal:'; \
+      git status; \
+      echo ''; \
+      echo 'Estado de los submódulos:'; \
+      git submodule foreach --recursive 'echo \"$name:\"; git status; echo'; \
+    }; f"
+
+    # Crea una nueva rama y la establece en el superproyecto y en todos los submódulos
+    checkoutbrec = "!f() { \
+        branch=$1; \
+        if [ -z \"$branch\" ]; then \
+            echo 'Usage: git checkoutbrec <branch>'; \
+            exit 1; \
+        fi; \
+        echo 'Creando la rama \"$branch\" en el superproyecto...'; \
+        git checkout -b \"$branch\" && \
+        echo 'Creando la rama \"$branch\" en cada submódulo...'; \
+        git submodule foreach --recursive \"git checkout -b '$branch'\"; \
+    }; f"
+
+    # Cambia a la rama especificada en el superproyecto y en todos los submódulos
+    checkoutrec = "!f() { \
+        branch=$1; \
+        if [ -z \"$branch\" ]; then \
+            echo 'Usage: git checkoutrec <branch>'; \
+            exit 1; \
+        fi; \
+        echo 'Cambiando a la rama \"$branch\" en el superproyecto...'; \
+        git checkout \"$branch\" && \
+        echo 'Cambiando a la rama \"$branch\" en cada submódulo...'; \
+        git submodule foreach --recursive \"git checkout '$branch'\"; \
+    }; f"
+
+    # Hola
+    hola = "!echo 'Hola, mundo'"
