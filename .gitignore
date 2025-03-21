@@ -7,3 +7,7 @@
 ./strapi/.Spotlight-V100
 ./strapi/.Trashes
 ./strapi/._*
+
+./market/node_modules
+./market/environment.ts
+./market/src/environments/environment.ts
