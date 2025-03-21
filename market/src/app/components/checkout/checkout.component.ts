@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { StripeService } from '../../services/stripe.service';
-import { environment } from '../../environments/environment';
+import { environment } from '../../../../environment';
+
 
 @Component({
   selector: 'app-checkout',

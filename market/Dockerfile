@@ -18,7 +18,7 @@ ARG STRIPE_PRIVATE_API_KEY
 ARG STRIPE_PUBLIC_API_KEY
 
 # Construir la aplicación para producción con SSR
-RUN npm run build
+RUN npm run config && npm run build
 
 # Etapa 2: Servidor para la aplicación Angular SSR
 FROM node:20-alpine

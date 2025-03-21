@@ -3,7 +3,7 @@ version: '3.8'
 services:
   traefik-atlas-frontend:
     image: traefik:v2.10
-    container_name: traefik
+    container_name: traefik-atlas-frontend
     command:
       - --entrypoints.web.address=:80
       - --entrypoints.websecure.address=:443
@@ -26,7 +26,7 @@ services:
 
   watchtower-atlas-frontend:
     image: containrrr/watchtower
-    container_name: watchtower
+    container_name: watchtower-atlas-frontend
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
     command: --interval 300 --cleanup
