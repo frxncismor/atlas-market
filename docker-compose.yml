@@ -22,7 +22,7 @@ services:
       - "4000"
     labels:
       - "traefik.enable=true"
-      - "traefik.http.routers.atlas-frontend.rule=Host(`atlas.digitalparty.com`)"
+      - "traefik.http.routers.atlas-frontend.rule=Host(`atlas.digitalparty.site`)"
       - "traefik.http.routers.atlas-frontend.entrypoints=websecure"
       - "traefik.http.services.atlas-frontend.loadbalancer.server.port=4000"
       - "traefik.http.routers.atlas-frontend.tls.certresolver=myresolver"
@@ -58,7 +58,7 @@ services:
       - "1337"
     labels:
       - "traefik.enable=true"
-      - "traefik.http.routers.atlas-backend.rule=Host(`atlas-strapi.digitalparty.com`)"
+      - "traefik.http.routers.atlas-backend.rule=Host(`atlas-strapi.digitalparty.site`)"
       - "traefik.http.routers.atlas-backend.entrypoints=websecure"
       - "traefik.http.services.atlas-backend.loadbalancer.server.port=1337"
       - "traefik.http.routers.atlas-backend.tls.certresolver=myresolver"
