@@ -40,4 +40,4 @@ RUN npm install --omit=dev
 EXPOSE 4000
 
 # Comando para iniciar la aplicación SSR
-CMD ["node", "dist/frontend/server/main.js"]
+CMD ["node", "dist/market/server/main.js"]
