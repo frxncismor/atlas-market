@@ -7,8 +7,9 @@ import {
 import express from 'express';
 import { dirname, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { environment } from '../environment';
+
 import Stripe from 'stripe';
+import { environment } from './app/environments/environment';
 
 // Configura Stripe con tu clave secreta (usa variables de entorno en producción)
 const stripe = new Stripe(environment.stripePrivateApiKey, {
