@@ -43,8 +43,8 @@ jobs:
       - name: Construir y publicar frontend
         uses: docker/build-push-action@v2
         with:
-          context: ./frontend
-          file: ./frontend/Dockerfile
+          context: ./market
+          file: ./market/Dockerfile
           push: true
           tags: frxncis/atlas-frontend:latest
           cache-from: type=gha
