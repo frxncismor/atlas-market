@@ -9,5 +9,4 @@
 ./strapi/._*
 
 ./market/node_modules
-./market/environment.ts
-./market/src/environments/environment.ts
+market/src/app/environments/environment.ts
