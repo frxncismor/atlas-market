@@ -1,0 +1,76 @@
+version: '3.8'
+
+services:
+  watchtower:
+    image: containrrr/watchtower
+    container_name: watchtower
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    command: --interval 300 --cleanup
+    networks:
+      - traefiknet
+    restart: unless-stopped
+
+  atlas-frontend:
+    image: frxncis/atlas-frontend:latest
+    container_name: atlas-frontend
+    environment:
+      - NODE_ENV=production
+      - STRIPE_PRIVATE_API_KEY=${STRIPE_PRIVATE_API_KEY}
+      - STRIPE_PUBLIC_API_KEY=${STRIPE_PUBLIC_API_KEY}
+    expose:
+      - "4000"
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.atlas-frontend.rule=Host(`atlas.digitalparty.com`)"
+      - "traefik.http.routers.atlas-frontend.entrypoints=websecure"
+      - "traefik.http.services.atlas-frontend.loadbalancer.server.port=4000"
+      - "traefik.http.routers.atlas-frontend.tls.certresolver=myresolver"
+    networks:
+      - traefiknet
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "wget", "--no-verbose", "--tries=1", "--spider", "http://localhost:4000"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+  atlas-backend:
+    image: frxncis/atlas-backend:latest
+    container_name: atlas-backend
+    environment:
+      - NODE_ENV=production
+      - HOST=0.0.0.0
+      - PORT=1337
+      - APP_KEYS=${APP_KEYS}
+      - API_TOKEN_SALT=${API_TOKEN_SALT}
+      - ADMIN_JWT_SECRET=${ADMIN_JWT_SECRET}
+      - TRANSFER_TOKEN_SALT=${TRANSFER_TOKEN_SALT}
+      - DATABASE_CLIENT=${DATABASE_CLIENT}
+      - DATABASE_HOST=${DATABASE_HOST}
+      - DATABASE_PORT=${DATABASE_PORT}
+      - DATABASE_NAME=${DATABASE_NAME}
+      - DATABASE_USERNAME=${DATABASE_USERNAME}
+      - DATABASE_PASSWORD=${DATABASE_PASSWORD}
+      - DATABASE_SSL=${DATABASE_SSL}
+      - JWT_SECRET=${JWT_SECRET}
+    expose:
+      - "1337"
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.atlas-backend.rule=Host(`atlas-strapi.digitalparty.com`)"
+      - "traefik.http.routers.atlas-backend.entrypoints=websecure"
+      - "traefik.http.services.atlas-backend.loadbalancer.server.port=1337"
+      - "traefik.http.routers.atlas-backend.tls.certresolver=myresolver"
+    networks:
+      - traefiknet
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "wget", "--no-verbose", "--tries=1", "--spider", "http://localhost:1337/admin"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+networks:
+  traefiknet:
+    external: true

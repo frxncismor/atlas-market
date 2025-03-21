@@ -14,8 +14,8 @@ RUN npm install
 COPY . .
 
 # Establecer variables de entorno necesarias para la construcción
-ARG STRIPE_PRIVATE_API_KEY
-ARG STRIPE_PUBLIC_API_KEY
+ENV STRIPE_PRIVATE_API_KEY=${STRIPE_PRIVATE_API_KEY}
+ENV STRIPE_PUBLIC_API_KEY=${STRIPE_PUBLIC_API_KEY}
 
 # Construir la aplicación para producción con SSR
 RUN npm run config && npm run build
