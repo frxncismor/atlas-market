@@ -6,7 +6,7 @@ import { HomeComponent } from './pages/home/home.component';
 export const routes: Routes = [
   { path: "cancel", component: CancelComponent },
   { path: "success", component: SuccessComponent },
-  { path: "checkout", component: HomeComponent },
-  { path: "", redirectTo: "/checkout", pathMatch: "full" },
+  { path: "home", component: HomeComponent },
+  { path: "", redirectTo: "/home", pathMatch: "full" },
 ];
 
