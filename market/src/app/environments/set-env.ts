@@ -19,7 +19,7 @@ const setEnv = () => {
   console.log(
     colors.magenta(
       `The file 'environment.ts' will be written with the following content: \n
-        Domain: ${process.env['DOMAIN']}
+        Domain: ${process.env['FRONTEND_DOMAIN']}
         appVersion: '${appVersion}',
         production: true`,
     ),
