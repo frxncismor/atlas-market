@@ -49,6 +49,7 @@ app.use(
  // Endpoint para crear una sesión de Stripe Checkout
 app.post("/create-checkout-session", async (req, res) => {
   console.log(req.body);
+  console.log('DOMAIN', environment.domain);
   try {
     // Aquí puedes extraer datos del request si los necesitas (por ejemplo, producto, cantidad, etc.)
     const session = await stripe.checkout.sessions.create({
