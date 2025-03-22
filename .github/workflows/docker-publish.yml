@@ -64,6 +64,7 @@ jobs:
           build-args: |
             STRIPE_PRIVATE_API_KEY=${{ secrets.STRIPE_PRIVATE_API_KEY }}
             STRIPE_PUBLIC_API_KEY=${{ secrets.STRIPE_PUBLIC_API_KEY }}
+            DOMAIN=${{ secrets.DOMAIN }}
           no-cache: true
           cache-from: type=gha
           cache-to: type=gha,mode=max
