@@ -13,7 +13,7 @@ const setEnv = () => {
   stripePublicApiKey: '${process.env['STRIPE_PUBLIC_API_KEY']}',
   appVersion: '${appVersion}',
   production: true,
-  domain: '${process.env['DOMAIN']}',
+  domain: '${process.env['FRONTEND_DOMAIN']}',
 };
 `;
   console.log(

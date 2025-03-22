@@ -16,10 +16,12 @@ COPY . .
 # Añadir los ARGs para recibir las variables
 ARG STRIPE_PRIVATE_API_KEY
 ARG STRIPE_PUBLIC_API_KEY
+ARG FRONTEND_DOMAIN
 
 # Establecer variables de entorno para el proceso de build
 ENV STRIPE_PRIVATE_API_KEY=$STRIPE_PRIVATE_API_KEY
 ENV STRIPE_PUBLIC_API_KEY=$STRIPE_PUBLIC_API_KEY
+ENV FRONTEND_DOMAIN=$FRONTEND_DOMAIN
 
 # Establecer variables de entorno necesarias para la construcción
 ENV NODE_ENV=production
