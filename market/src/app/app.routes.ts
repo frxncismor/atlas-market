@@ -6,7 +6,7 @@ import { HomeComponent } from './pages/home/home.component';
 export const routes: Routes = [
   { path: "cancel", component: CancelComponent },
   { path: "success", component: SuccessComponent },
-  { path: "home", component: HomeComponent },
+  { path: "home", component: HomeComponent, title: 'Atlas Market | Home'},
   { path: "", redirectTo: "/home", pathMatch: "full" },
 ];
 

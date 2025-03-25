@@ -7,7 +7,7 @@ import { environment } from '../../environments/environment';
   standalone: true,
   imports: [],
   templateUrl: './checkout.component.html',
-  styleUrl: './checkout.component.css'
+  styleUrl: './checkout.component.scss'
 })
 export class CheckoutComponent {
   constructor(private stripeService: StripeService) {}

@@ -1,0 +1,22 @@
+/* You can add global styles to this file, and also import other style files */
+/* User variables */
+
+/*!
+ * Cartzilla | Multipurpose E-Commerce Bootstrap HTML Template
+ * Copyright 2024 Createx Studio
+ * Theme styles
+*/
+
+
+// @use "./app/assets/styles/variables";
+@use "./app/assets/styles/theme";
+       /* Estilos base */
+@import 'swiper/element/css/pagination';   /* Si usas paginación */
+@import 'swiper/element/css/effect-fade';  /* Si usas el efecto fade */
+@import 'swiper/element/css/autoplay';     /* Si usas autoplay */
+
+@import 'swiper/swiper-bundle.css';
+
+ngx-simplebar{
+  padding-top: 10px;
+}

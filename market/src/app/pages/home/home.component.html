@@ -1,2 +1,12 @@
-<h1>Home works!</h1>
-<app-checkout></app-checkout>
+<app-header
+  [isThemeSwitcherEnabled]="false"
+  [isDeliveryOptionsEnabled]="true"
+  [isAccountSignInEnabled]="true"
+  [isShoppingCartEnabled]="true"
+></app-header>
+
+<app-categories-menu [categories]="categories"></app-categories-menu>
+
+<app-hero-slider [slides]="slides" ngSkipHydration></app-hero-slider>
+
+<app-featured-categories ngSkipHydration></app-featured-categories>

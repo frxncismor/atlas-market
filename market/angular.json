@@ -2,6 +2,11 @@
   "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
   "version": 1,
   "newProjectRoot": "projects",
+  "schematics": {
+    "@schematics/angular:component": {
+      "style": "scss"
+    }
+  },
   "projects": {
     "market": {
       "projectType": "application",
@@ -13,6 +18,11 @@
         "build": {
           "builder": "@angular-devkit/build-angular:application",
           "options": {
+            "stylePreprocessorOptions": {
+              "includePaths": [
+                "node_modules"
+              ]
+            },
             "outputPath": "dist/market",
             "index": "src/index.html",
             "browser": "src/main.ts",
@@ -27,9 +37,14 @@
               }
             ],
             "styles": [
-              "src/styles.css"
+              "node_modules/bootstrap/dist/css/bootstrap.min.css",
+              "src/styles.scss",
+              "src/icons/_cartzilla-icons.scss",
+              "node_modules/swiper/swiper-bundle.css"
             ],
-            "scripts": [],
+            "scripts": [
+              "node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"
+            ],
             "server": "src/main.server.ts",
             "outputMode": "server",
             "ssr": {
