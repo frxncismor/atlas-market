@@ -1,7 +1,15 @@
-@import 'swiper/element/css/pagination';   /* Si usas paginación */
-@import 'swiper/element/css/effect-fade';  /* Si usas el efecto fade */
-@import 'swiper/element/css/autoplay';     /* Si usas autoplay */
+@import "swiper/element/css/pagination";
+@import "swiper/element/css/effect-fade";
+@import "swiper/element/css/autoplay";
 
 swiper-slide {
   position: relative;
 }
+
+swiper-container {
+  position: relative;
+  display: block;
+  inline-size: 100%;
+  block-size: 500px;
+}
+

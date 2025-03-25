@@ -1,77 +1,28 @@
-<!-- Featured categories that turns into carousel on screen < 992px (lg breakpoint) -->
+
 <section class="container pt-4 pb-5 mb-2 mb-sm-3 mb-lg-4 mb-xl-5" >
-  <swiper-container
-    class="swiper"
-    #swiperContainer
-    [slides-per-view]="1"
-    [space-between]="24"
-    [pagination]="{ clickable: true }"
-    [breakpoints]="{
-      '680': { slidesPerView: 2 },
-      '992': { slidesPerView: 3 }
-    }"
-    autoplay="true"
-    [observer]="true"
-    [observeParents]="true"
-  >
-    <!-- Category 1 -->
-    <swiper-slide class="h-auto">
-      <div class="position-relative d-flex justify-content-between align-items-center h-100 bg-primary-subtle rounded-5 overflow-hidden ps-2 ps-xl-3">
-        <div class="d-flex flex-column pt-4 px-3 pb-3">
-          <p class="fs-xs pb-2 mb-1">124 products</p>
-          <h2 class="h5 mb-2 mb-xxl-3">Only fresh fish to your table</h2>
-          <div class="nav">
-            <a class="nav-link animate-underline stretched-link text-body-emphasis text-nowrap px-0" href="shop-catalog-grocery.html">
-              <span class="animate-target">Shop now</span>
-              <i class="ci-chevron-right fs-base ms-1"></i>
-            </a>
+    <swiper-container
+      [slidesPerView]="isMobileXSmall ? 1 : isMobileSmall ? 2 : 3"
+      [pagination]="{ clickable: true }"
+      speed="400"
+      autoplay="true"
+    >
+
+    @for (category of categories; track category) {
+      <swiper-slide class="h-auto" [lazy]="category.lazy">
+        <div class="position-relative d-flex justify-content-between align-items-center h-100 rounded-5 overflow-hidden ps-2 ps-xl-3" [ngClass]="category.bgClass">
+          <div class="d-flex flex-column pt-4 px-3 pb-3">
+            <p class="fs-xs pb-2 mb-1">{{category.numberOfProducts}} products</p>
+            <h2 class="h5 mb-2 mb-xxl-3">{{category.heading}}</h2>
+            <div class="nav">
+              <a class="nav-link animate-underline stretched-link text-body-emphasis text-nowrap px-0" [href]="category.linkUrl">
+                <span class="animate-target">Shop now</span>
+                <i class="ci-chevron-right fs-base ms-1"></i>
+              </a>
+            </div>
+          </div>
+          <div class="ratio w-100 align-self-end rtl-flip category">
+            <img [src]="category.image" [alt]="category.alt" loading="lazy">
           </div>
         </div>
-        <div class="ratio w-100 align-self-end rtl-flip" style="max-width: 216px; --cz-aspect-ratio: calc(240 / 216 * 100%)">
-          <img src="images/grocery/featured/01.png" alt="Image">
-        </div>
-      </div>
-    </swiper-slide>
-
-    <!-- Category 2 -->
-    <swiper-slide class="h-auto">
-      <div class="position-relative d-flex justify-content-between align-items-center h-100 bg-success-subtle rounded-5 overflow-hidden ps-2 ps-xl-3">
-        <div class="d-flex flex-column pt-4 px-3 pb-3">
-          <p class="fs-xs pb-2 mb-1">97 products</p>
-          <h2 class="h5 mb-2 mb-xxl-3">Products for Easter table</h2>
-          <div class="nav">
-            <a class="nav-link animate-underline stretched-link text-body-emphasis text-nowrap px-0" href="shop-catalog-grocery.html">
-              <span class="animate-target">Shop now</span>
-              <i class="ci-chevron-right fs-base ms-1"></i>
-            </a>
-          </div>
-        </div>
-        <div class="ratio w-100 align-self-end rtl-flip" style="max-width: 216px; --cz-aspect-ratio: calc(240 / 216 * 100%)">
-          <img src="images/grocery/featured/02.png" alt="Image">
-        </div>
-      </div>
-    </swiper-slide>
-
-    <!-- Category 3 -->
-    <swiper-slide class="h-auto">
-      <div class="position-relative d-flex justify-content-between align-items-center h-100 bg-info-subtle rounded-5 overflow-hidden ps-2 ps-xl-3">
-        <div class="d-flex flex-column pt-4 px-3 pb-3">
-          <p class="fs-xs pb-2 mb-1">28 products</p>
-          <h2 class="h5 mb-2 mb-xxl-3">Berries from the garden</h2>
-          <div class="nav">
-            <a class="nav-link animate-underline stretched-link text-body-emphasis text-nowrap px-0" href="shop-catalog-grocery.html">
-              <span class="animate-target">Shop now</span>
-              <i class="ci-chevron-right fs-base ms-1"></i>
-            </a>
-          </div>
-        </div>
-        <div class="ratio w-100 align-self-end rtl-flip" style="max-width: 216px; --cz-aspect-ratio: calc(240 / 216 * 100%)">
-          <img src="images/grocery/featured/03.png" alt="Image">
-        </div>
-      </div>
-    </swiper-slide>
-    <div class="swiper-pagination position-static mt-3 mt-sm-4"></div>
-  </swiper-container>
-
-  <!-- Slider pagination (Bullets) -->
-</section>
+      </swiper-slide>
+    }
