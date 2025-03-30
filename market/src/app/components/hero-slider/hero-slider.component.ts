@@ -1,9 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component, CUSTOM_ELEMENTS_SCHEMA, ElementRef, Input, ViewChild } from '@angular/core';
-import { Slide } from 'app/interfaces/slides.interface';
-import { register } from 'swiper/element/bundle';
-
-register();
+import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
+import { Slide } from 'app/interfaces/slide.interface';
 
 @Component({
   standalone: true,
@@ -15,4 +13,10 @@ register();
 })
 export class HeroSliderComponent {
   @Input() slides: Slide[] = [];
+
+  constructor(private sanitizer: DomSanitizer) {}
+
+  getSanitizedHtml(content: string): SafeHtml {
+    return this.sanitizer.bypassSecurityTrustHtml(content);
+  }
 }

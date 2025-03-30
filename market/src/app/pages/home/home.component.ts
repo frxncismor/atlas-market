@@ -3,8 +3,9 @@ import { HeaderComponent } from "../../components/header/header.component";
 import { CategoriesMenuComponent } from 'app/components/categories-menu/categories-menu.component';
 import { HeroSliderComponent } from 'app/components/hero-slider/hero-slider.component';
 import { Category } from 'app/interfaces/category.interface';
-import { Slide } from 'app/interfaces/slides.interface';
+import { Slide } from 'app/interfaces/slide.interface';
 import { FeaturedCategoriesComponent } from 'app/components/featured-categories/featured-categories.component';
+import { FeaturedCategory } from 'app/interfaces/featured-category.interface';
 
 @Component({
   standalone: true,
@@ -17,6 +18,7 @@ export class HomeComponent {
 
   categories: Category[] = [];
   slides: Slide[] = [];
+  featuredCategories: FeaturedCategory[] = [];
 
   constructor() {
     this.categories = [
@@ -58,18 +60,16 @@ export class HomeComponent {
     ];
     this.slides = [
       {
-        className: 'swiper-1',
         backgroundColor: '#6dafca',
         lazy: true,
         heading: 'Healthy Food Available to Everyone',
-        paragraph: '🔥 Free shipping - order over <strong>50$</strong>',
+        paragraph: '🔥 Free shipping - order over <strong>$50</strong>',
         linkUrl: 'shop-catalog-grocery.html',
         linkText: 'Shop now',
         image: 'images/grocery/hero-slider/01.jpg',
         alt: 'Slide 1 image'
       },
       {
-        className: 'swiper-2',
         backgroundColor: '#5a7978',
         lazy: true,
         heading: 'Organic eggs from home-grown chicken',
@@ -80,7 +80,6 @@ export class HomeComponent {
         alt: 'Slide 2 image'
       },
       {
-        className: 'swiper-3',
         backgroundColor: '#f99c03',
         lazy: false, // o true si quieres
         heading: 'Enjoy refreshing summer drink',
@@ -89,6 +88,38 @@ export class HomeComponent {
         linkText: 'Shop now',
         image: 'images/grocery/hero-slider/03.jpg',
         alt: 'Slide 3 image'
+      }
+    ];
+    this.featuredCategories = [
+      {
+        numberOfProducts: 124,
+        heading: 'Only fresh fish to your table',
+        linkUrl: 'shop-catalog-grocery.html',
+        image: 'images/grocery/featured/01.png',
+        alt: 'Featured Category Image 1',
+        name: 'Fish',
+        lazy: true,
+        bgClass: 'bg-primary-subtle'
+      },
+      {
+        numberOfProducts: 97,
+        heading: 'Products for Easter table',
+        linkUrl: 'shop-catalog-grocery.html',
+        image: 'images/grocery/featured/02.png',
+        alt: 'Featured Category Image 2',
+        name: 'Desserts',
+        lazy: true,
+        bgClass: 'bg-success-subtle'
+      },
+      {
+        numberOfProducts: 28,
+        heading: 'Berries from the garden',
+        linkUrl: 'shop-catalog-grocery.html',
+        image: 'images/grocery/featured/03.png',
+        alt: 'Featured Category Image 3',
+        name: 'Fruits',
+        lazy: false,
+        bgClass: 'bg-info-subtle'
       }
     ];
   }

@@ -1,5 +1,4 @@
 export interface Slide {
-  className: string;
   backgroundColor: string;
   lazy: boolean;
   heading: string;

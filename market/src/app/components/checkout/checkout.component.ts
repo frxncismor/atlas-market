@@ -1,11 +1,12 @@
 import { Component } from '@angular/core';
 import { StripeService } from '../../services/stripe.service';
 import { environment } from '../../environments/environment';
+import { CheckoutMercadopagoComponent } from "../checkout-mercadopago/checkout-mercadopago.component";
 
 @Component({
   selector: 'app-checkout',
   standalone: true,
-  imports: [],
+  imports: [CheckoutMercadopagoComponent],
   templateUrl: './checkout.component.html',
   styleUrl: './checkout.component.scss'
 })
