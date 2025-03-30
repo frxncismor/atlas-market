@@ -10,11 +10,24 @@ import { fileURLToPath } from 'node:url';
 
 import Stripe from 'stripe';
 import { environment } from './app/environments/environment';
+import { MercadoPagoConfig, Payment, Preference } from 'mercadopago';
+const bodyParser = require('body-parser');
+
 
 // Configura Stripe con tu clave secreta (usa variables de entorno en producción)
 const stripe = new Stripe(environment.stripePrivateApiKey, {
   apiVersion: "2025-02-24.acacia",
 });
+
+const client = new MercadoPagoConfig({
+  accessToken: 'TEST-8204142312016245-032918-bff6d30183178f367a2152ab6cbe8166-174005798',
+  options: {
+    timeout: 5000,
+    idempotencyKey: 'abc'
+  }
+});
+
+const preference = new Preference(client);
 
 
 const serverDistFolder = dirname(fileURLToPath(import.meta.url));
@@ -45,6 +58,39 @@ app.use(
     redirect: false,
   }),
 );
+
+app.use(bodyParser.json());
+
+app.post('/create-payment-link', async (req, res) => {
+  const products = req.body.products;
+  console.log('create payment link server res: ', products)
+
+  const body = {
+    body: {
+      items: products,
+      binary_mode: true,
+      shipments: {
+        cost: 50,
+        mode: 'not_specified'
+      },
+      back_urls: {
+        success: `${environment.domain}/success`,
+        pending: `${environment.domain}/pending`,
+        failure: `${environment.domain}/failure`,
+      },
+      auto_return: 'approved',
+      statement_descriptor: 'Esto es una descripción del negocio de prueba'
+    }
+  }
+
+  try {
+    const response = await preference.create(body);
+    res.json({ paymentLink: response.init_point });
+  } catch (error: any) {
+    console.error('Error al crear el pago:', error);
+    res.status(500).json({ error: error.message });
+  }
+});
 
  // Endpoint para crear una sesión de Stripe Checkout
 app.post("/create-checkout-session", async (req, res) => {
