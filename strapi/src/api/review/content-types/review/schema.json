@@ -1,0 +1,36 @@
+{
+  "kind": "collectionType",
+  "collectionName": "reviews",
+  "info": {
+    "singularName": "review",
+    "pluralName": "reviews",
+    "displayName": "review"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "product": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::product.product",
+      "inversedBy": "reviews"
+    },
+    "user": {
+      "type": "string"
+    },
+    "comentario": {
+      "type": "text"
+    },
+    "calificacion": {
+      "type": "enumeration",
+      "enum": [
+        "uno",
+        "dos",
+        "tres",
+        "cuatro",
+        "cinco"
+      ]
+    }
+  }
+}
